@@ -9,11 +9,34 @@
     <title>Etch-a-Sketch</title>
 </head>
 <body>
-    <div class="right">
-        <div class="gridContainer"></div>
+    <h1>Etch-a-Sketch</h1>   <!--Drawsy.io?--> 
+    <div class="container">
+        <div class="right">
+            <div class="gridContainer"></div>
+        </div>
+        <div class="left">
+            <div class="colorContainer">  <!--Have them press c to change primary or secondary-->
+                <div class="primaryColorContainer">
+                    <input type="color" id="selected-color">
+                    <span>Primary Color</span>
+                </div>
+                <div class="secondaryColorContainer">
+                    <input type="color" id="selected-color">
+                    <span>Secondary Color</span>
+                </div>
+            </div>
+            <button>Toggle Pen</button>
+            <button>Toggle Eraser</button>
+            <button>Toggle Fill</button>
+            <button>Toggle Eyedropper</button>
+            <button>Toggle Rainbow</button>
+            <button>Clear</button>
+            <div id="displayedGridSize">Grid Size: 16 x 16</div>
+            <input id="gridSizeSlider" type="range" value="16" min="1" max="64">
+        </div>
     </div>
-    <div class="left">
-        <h1>Etch-a-Sketch</h1>
+    <div class="footer">
+        <p>Copyright © 2023 LYCANFSD</p>
     </div>
 </body>
 </html>

@@ -1,0 +1,21 @@
+body {
+    display: flex;
+}
+
+.left {
+    display: flex;
+    order: 0;
+}
+
+.right {
+    display: flex;
+    order: 1;
+}
+
+.gridContainer {
+    display: inline-grid;
+    border: solid 2px black;
+    flex-wrap: wrap;
+    height: 30rem;
+    width: 30rem;
+}

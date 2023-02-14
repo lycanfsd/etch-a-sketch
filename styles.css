@@ -88,6 +88,10 @@ h1 {
     width: 8rem;
 }
 
+.activeButton {
+    background-color: grey;
+}
+
 .footer {
     display: flex;
     justify-content: center;

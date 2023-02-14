@@ -10,10 +10,22 @@ let columns;
 let rows;
 
 //button elements
+let activeButton;
+const button = document.querySelectorAll('button');
 const clearButton = document.querySelector('#clearButton');
 clearButton.addEventListener('click', () => reloadGrid());
 const resetButton = document.querySelector('#resetButton');
 resetButton.addEventListener('click', () => reset());
+const penButton = document.querySelector('#penButton');
+penButton.addEventListener('click', () => selectButton(penButton));
+const eraserButton = document.querySelector('#eraserButton');
+eraserButton.addEventListener('click', () => selectButton(eraserButton));
+const fillButton = document.querySelector('#fillButton');
+fillButton.addEventListener('click', () => selectButton(fillButton));
+const eyedropperButton = document.querySelector('#eyedropperButton');
+eyedropperButton.addEventListener('click', () => selectButton(eyedropperButton));
+const rainbowButton = document.querySelector('#rainbowButton');
+rainbowButton.addEventListener('click', () => selectButton(rainbowButton));
 
 //color values
 let primaryColor = document.querySelector('#primary-color');
@@ -30,10 +42,7 @@ createGrid(currentGridSize, currentGridSize);
 function createGrid(columns, rows) {
     for (i = 0; i < columns * rows; i++) {
        let cell = document.createElement('div');
-       
        cell.addEventListener('mouseover', () => {cell.style.backgroundColor = primaryColor.value});
-
-       
        cell.classList.add('tile');
        cell.id = "cell" + i; //goes from 0 to 255 squares (total 256)
        standardGridProperties(cell);
@@ -76,11 +85,19 @@ function reset() {
 
 function clearGrid() {
     gridContainer.innerHTML = '';
+    button.forEach((selection) => {selection.classList.remove('activeButton')});
 }
 
 function standardGridProperties(cell) {
     cell.style.backgroundColor = 'white';
     cell.style.border = 'solid black 1px';
+}
+
+function selectButton(selectedButton) {
+    if (selectedButton.classList.contains('toolButton') === true) {
+        button.forEach((selection) => {selection.classList.remove('activeButton')});
+    }
+    selectedButton.classList.add('activeButton');
 }
 
 

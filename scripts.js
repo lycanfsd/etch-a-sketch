@@ -11,7 +11,9 @@ let rows;
 
 //button elements
 const clearButton = document.querySelector('#clearButton');
-clearButton.addEventListener('click', clearGrid());
+clearButton.addEventListener('click', () => clearGrid());
+const resetButton = document.querySelector('#resetButton');
+resetButton.addEventListener('click', () => reset());
 
 //Change grid size value in HTML
 gridSizeSlider.onchange = (e) => updateDisplayedGridSize(e.target.value);
@@ -53,7 +55,12 @@ function reloadGrid() {
     createGrid(currentGridSize, currentGridSize);
 }
 
-console.log(currentGridSize);
+function reset() {
+    currentGridSize = DEFAULT_GRID_SIZE;
+    updateDisplayedGridSize(currentGridSize);
+    gridSizeSlider.value = DEFAULT_GRID_SIZE;
+    reloadGrid();
+}
 
 // When button is pressed, clear the grid
 
@@ -65,8 +72,6 @@ function standardGridProperties(cell) {
     cell.style.backgroundColor = 'white';
     cell.style.border = 'solid black 1px';
 }
-
-console.log(gridSizeSlider.value);
 
 //Yesterday created a clear function. Need to add a pen tool function
 // and function for other buttons. Work on this!

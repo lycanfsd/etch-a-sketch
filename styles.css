@@ -83,6 +83,11 @@ h1 {
     font-weight: bold;
 }
 
+#resetButton {
+    height: 2rem;
+    width: 8rem;
+}
+
 .footer {
     display: flex;
     justify-content: center;

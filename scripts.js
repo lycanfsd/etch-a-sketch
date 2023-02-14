@@ -11,9 +11,13 @@ let rows;
 
 //button elements
 const clearButton = document.querySelector('#clearButton');
-clearButton.addEventListener('click', () => clearGrid());
+clearButton.addEventListener('click', () => reloadGrid());
 const resetButton = document.querySelector('#resetButton');
 resetButton.addEventListener('click', () => reset());
+
+//color values
+let primaryColor = document.querySelector('#primary-color');
+let secondaryColor = document.querySelector('#secondary-color');
 
 //Change grid size value in HTML
 gridSizeSlider.onchange = (e) => updateDisplayedGridSize(e.target.value);
@@ -26,13 +30,21 @@ createGrid(currentGridSize, currentGridSize);
 function createGrid(columns, rows) {
     for (i = 0; i < columns * rows; i++) {
        let cell = document.createElement('div');
+       
+       cell.addEventListener('mouseover', () => {cell.style.backgroundColor = primaryColor.value});
+
+       
        cell.classList.add('tile');
-       cell.id = "cell" + i;
+       cell.id = "cell" + i; //goes from 0 to 255 squares (total 256)
        standardGridProperties(cell);
        gridContainer.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
        gridContainer.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
        gridContainer.appendChild(cell);
     }
+}
+
+function changeColor(cell) {
+    cell.style.backgroundColor = primaryColor.value;
 }
 
 function updateDisplayedGridSize(size) {
@@ -62,8 +74,6 @@ function reset() {
     reloadGrid();
 }
 
-// When button is pressed, clear the grid
-
 function clearGrid() {
     gridContainer.innerHTML = '';
 }
@@ -73,5 +83,5 @@ function standardGridProperties(cell) {
     cell.style.border = 'solid black 1px';
 }
 
-//Yesterday created a clear function. Need to add a pen tool function
-// and function for other buttons. Work on this!
+
+//Pen works on mouse hover but not on mouse click hold. Need to implement this.

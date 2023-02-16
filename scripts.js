@@ -20,16 +20,14 @@ const penButton = document.querySelector('#penButton');
 penButton.addEventListener('click', () => selectButton(penButton));
 const eraserButton = document.querySelector('#eraserButton');
 eraserButton.addEventListener('click', () => selectButton(eraserButton));
-const fillButton = document.querySelector('#fillButton');
-fillButton.addEventListener('click', () => selectButton(fillButton));
-const eyedropperButton = document.querySelector('#eyedropperButton');
-eyedropperButton.addEventListener('click', () => selectButton(eyedropperButton));
 const rainbowButton = document.querySelector('#rainbowButton');
 rainbowButton.addEventListener('click', () => selectButton(rainbowButton));
 
 //color values
 let primaryColor = document.querySelector('#primary-color');
 let secondaryColor = document.querySelector('#secondary-color');
+
+let currentColor;
 
 //Change grid size value in HTML
 gridSizeSlider.onchange = (e) => updateDisplayedGridSize(e.target.value);
@@ -38,11 +36,10 @@ gridSizeSlider.onchange = (e) => changeGridSize(e.target.value);
 createGrid(currentGridSize, currentGridSize);
 
 // Take input for grid dimensions and create grid
-
 function createGrid(columns, rows) {
     for (i = 0; i < columns * rows; i++) {
        let cell = document.createElement('div');
-       cell.addEventListener('mouseover', () => {cell.style.backgroundColor = primaryColor.value});
+       cell.addEventListener('mouseover', () => {draw(cell)});
        cell.classList.add('tile');
        cell.id = "cell" + i; //goes from 0 to 255 squares (total 256)
        standardGridProperties(cell);
@@ -52,8 +49,17 @@ function createGrid(columns, rows) {
     }
 }
 
-function changeColor(cell) {
-    cell.style.backgroundColor = primaryColor.value;
+function draw(cell) {
+        if (penButton.classList.contains('activeButton')) {
+            cell.style.backgroundColor = primaryColor.value;
+        } else if (eraserButton.classList.contains('activeButton')) {
+            cell.style.backgroundColor = 'white';
+        } else if (rainbowButton.classList.contains('activeButton')) {
+            const randR = Math.floor(Math.random() * 256);
+            const randG = Math.floor(Math.random() * 256);
+            const randB =Math.floor(Math.random() * 256);
+            cell.style.backgroundColor = `rgb(${randR}, ${randG}, ${randB})`;
+        } else return;
 }
 
 function updateDisplayedGridSize(size) {

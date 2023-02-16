@@ -19,6 +19,10 @@ h1 {
     display: flex;
 }
 
+.gridContainer {
+    cursor: default;
+}
+
 .left {
     display: flex;
     flex-direction: column;
@@ -50,16 +54,17 @@ h1 {
     margin-left: 0rem;
 }
 
-.colorContainer > .primaryColorContainer > input, .secondaryColorContainer > input {
+.colorContainer > .primaryColorContainer > input{
     height: 2.5rem;
     width: 8rem;
     border: none;
     outline: none;
     overflow: hidden;
     background: #FFFFFF 0% 0%;
+
 }
 
-.primaryColorContainer, .secondaryColorContainer {
+.primaryColorContainer{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,7 +94,7 @@ h1 {
 }
 
 .activeButton {
-    background-color: grey;
+    background-color: lightgrey;
 }
 
 .footer {
